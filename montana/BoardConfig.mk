@@ -1,0 +1,76 @@
+#
+# SPDX-FileCopyrightText: The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# Inherit from parent
+include device/xiaomi/mi89xx-mainline/BoardConfig.mk
+
+# A/B
+AB_OTA_UPDATER := false
+
+# Boot parameters
+BOARD_KERNEL_CMDLINE += \
+    androidboot.hardware=mi89x7
+
+# Kernel
+TARGET_KERNEL_SOURCE := kernel/mainline/msm89x7-mainline
+
+TARGET_DTB_LIST_WILDCARD := \
+    qcom/msm8937-motorola-montana*
+
+TARGET_KERNEL_CONFIG_EXT := \
+    $(TARGET_DEVICE_PATH)/kconfigs/config-postmarketos-qcom-msm89x7.aarch64 \
+    kernel/mainline/configs/fragments/android-base-pre/common.config \
+    kernel/mainline/configs/fragments/android-base-pre/arm64.config \
+    kernel/configs/b/android-6.12/android-base.config \
+    kernel/mainline/configs/fragments/android-base-conditional/CONFIG_ARM64-y.config \
+    kernel/mainline/configs/fragments/common.config \
+    kernel/mainline/configs/fragments/y/fbcon.config \
+    kernel/mainline/configs/fragments/n/disable-clang-hardening-features.config \
+    kernel/mainline/configs/fragments/n/faster-build-time.config
+
+# Kernel modules
+BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD := \
+    $(strip $(shell cat $(TARGET_DEVICE_PATH)/modprobe/modules.load.basic)) \
+    $(strip $(shell cat $(TARGET_DEVICE_PATH)/modprobe/modules.load.drm)) \
+    $(strip $(shell cat $(TARGET_DEVICE_PATH)/modprobe/modules.load.power_supply)) \
+    $(strip $(shell cat $(TARGET_DEVICE_PATH)/modprobe/modules.load.touchscreen))
+BOARD_VENDOR_KERNEL_MODULES_LOAD := \
+    $(BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD)
+RECOVERY_KERNEL_MODULES := \
+    $(BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD)
+
+TARGET_AUTO_COLLECT_KERNEL_MODULE_DEPS := true
+
+# OTA
+TARGET_OTA_ASSERT_DEVICE := montana
+
+# Partitions
+BOARD_FLASH_BLOCK_SIZE              := 131072
+BOARD_BOOTIMAGE_PARTITION_SIZE      := 16777216
+BOARD_CACHEIMAGE_PARTITION_SIZE     := 268435456
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE   := ext4
+#BOARD_RECOVERYIMAGE_PARTITION_SIZE  := 16879616
+BOARD_RECOVERYIMAGE_PARTITION_SIZE  := 30521407
+BOARD_SYSTEMIMAGE_EXTFS_INODE_COUNT := -1
+BOARD_SYSTEMIMAGE_PARTITION_SIZE    := 2516582400
+BOARD_VENDORIMAGE_EXTFS_INODE_COUNT := -1
+BOARD_VENDORIMAGE_PARTITION_SIZE    := 419430400
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE  := ext4
+
+BOARD_SUPER_PARTITION_BLOCK_DEVICES := system
+BOARD_SUPER_PARTITION_METADATA_DEVICE := system
+BOARD_SUPER_PARTITION_SYSTEM_DEVICE_SIZE := 2516582400
+BOARD_SUPER_PARTITION_SIZE := $(BOARD_SUPER_PARTITION_SYSTEM_DEVICE_SIZE)
+
+BOARD_SUPER_PARTITION_GROUPS := montana_dynpart
+BOARD_MONTANA_DYNPART_SIZE := $(BOARD_SUPER_PARTITION_SYSTEM_DEVICE_SIZE)
+BOARD_MONTANA_DYNPART_PARTITION_LIST := system vendor
+
+BOARD_USES_METADATA_PARTITION := true
+TARGET_COPY_OUT_VENDOR := vendor
+
+# Recovery
+TARGET_RECOVERY_DENSITY := xhdpi
+TARGET_RECOVERY_FSTAB := $(TARGET_DEVICE_PATH)/fstab/fstab.mi89x7

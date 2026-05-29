@@ -15,6 +15,7 @@ PRODUCT_MAKEFILES := \
     lineage_mi8953_a_car:$(LOCAL_DIR)/mi8953_a/lineage_mi8953_a_car.mk \
     lineage_mi8953_a_tv:$(LOCAL_DIR)/mi8953_a/lineage_mi8953_a_tv.mk \
     lineage_mi89x7:$(LOCAL_DIR)/mi89x7/lineage_mi89x7.mk \
+    lineage_montana:$(LOCAL_DIR)/montana/lineage_montana.mk \
     lineage_mi89x7_car:$(LOCAL_DIR)/mi89x7/lineage_mi89x7_car.mk \
     lineage_mi89x7_tv:$(LOCAL_DIR)/mi89x7/lineage_mi89x7_tv.mk \
     lineage_tiare_mainline:$(LOCAL_DIR)/tiare_mainline/lineage_tiare_mainline.mk
@@ -31,6 +32,7 @@ $(foreach build_type, user userdebug eng, \
     $(eval COMMON_LUNCH_CHOICES += lineage_mi8953_a_car-$(build_type)) \
     $(eval COMMON_LUNCH_CHOICES += lineage_mi8953_a_tv-$(build_type)) \
     $(eval COMMON_LUNCH_CHOICES += lineage_mi89x7-$(build_type)) \
+    $(eval COMMON_LUNCH_CHOICES += lineage_montana-$(build_type)) \
     $(eval COMMON_LUNCH_CHOICES += lineage_mi89x7_car-$(build_type)) \
     $(eval COMMON_LUNCH_CHOICES += lineage_mi89x7_tv-$(build_type)) \
     $(eval COMMON_LUNCH_CHOICES += lineage_tiare_mainline-$(build_type)))

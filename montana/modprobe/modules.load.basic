@@ -1,0 +1,6 @@
+leds-aw2013.ko
+leds-qcom-lpg.ko
+qcom-rng.ko
+tps65132-regulator.ko
+rmi_core.ko
+rmi_i2c.ko
