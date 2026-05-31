@@ -11,6 +11,8 @@ TARGET_QCOM_SOC_FAMILY := msm8937
 ## TODO: Bringup the corresponding hardware and remove the following definitions
 TARGET_LIGHT_HAL := none
 TARGET_SUPPORTS_SUSPEND := false
+TARGET_AUDIO_HAL := default-aidl
+BOARD_USES_VENDORIMAGE := false
 include device/mainline/qcom-common/optional/options.mk
 
 # Inherit from parent
@@ -26,15 +28,9 @@ PRODUCT_PACKAGES += \
     audio.xiaomi-santoni.xml \
     audio.xiaomi-ugg.xml
 
-TARGET_AUDIO_HAL := default-aidl
-
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
-
-# Dynamic Partitions
-PRODUCT_BUILD_SUPER_PARTITION := false
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Dalvik heap
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
