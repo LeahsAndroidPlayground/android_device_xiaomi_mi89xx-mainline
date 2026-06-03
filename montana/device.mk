@@ -12,7 +12,6 @@ TARGET_QCOM_SOC_FAMILY := msm8937
 TARGET_LIGHT_HAL := none
 TARGET_SUPPORTS_SUSPEND := false
 TARGET_AUDIO_HAL := default-aidl
-BOARD_USES_VENDORIMAGE := false
 include device/mainline/qcom-common/optional/options.mk
 
 # Inherit from parent
