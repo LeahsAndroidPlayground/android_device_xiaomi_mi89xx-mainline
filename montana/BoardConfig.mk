@@ -31,6 +31,7 @@ TARGET_KERNEL_CONFIG_EXT := \
     kernel/mainline/configs/fragments/n/faster-build-time.config
 
 # Kernel modules
+NEED_KERNEL_MODULE_SYSTEM := true
 BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD := \
     $(strip $(shell cat $(TARGET_DEVICE_PATH)/modprobe/modules.load.basic)) \
     $(strip $(shell cat $(TARGET_DEVICE_PATH)/modprobe/modules.load.drm)) \
@@ -50,20 +51,10 @@ TARGET_OTA_ASSERT_DEVICE := montana
 BOARD_BOOTIMAGE_PARTITION_SIZE              := 16777216
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE           := ext4
 BOARD_CACHEIMAGE_PARTITION_SIZE             := 268435456
-BOARD_RECOVERYIMAGE_PARTITION_SIZE          := 30552437 # Fake size! Real on-device partition is 16879616.
-
-# VENDOR
-# Commented out since we don't have vendor on montana!
-#BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE          := ext4
-#BOARD_VENDORIMAGE_EXTFS_INODE_COUNT         := 4096
-#BOARD_VENDORIMAGE_PARTITION_RESERVED_SIZE   := 419430400
-#TARGET_COPY_OUT_VENDOR := vendor
-
-# SYSTEM
-BOARD_EROFS_PCLUSTER_SIZE := 262144
+BOARD_RECOVERYIMAGE_PARTITION_SIZE          := 30616566 # Fake size! Real on-device partition is 16879616.
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE          := ext4
 BOARD_SYSTEMIMAGE_EXTFS_INODE_COUNT         := -1
-BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE   := 2516582400
+BOARD_SYSTEMIMAGE_PARTITION_SIZE            := 2516582400
 
 BOARD_USES_METADATA_PARTITION := true
 

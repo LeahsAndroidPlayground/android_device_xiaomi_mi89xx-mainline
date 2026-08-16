@@ -5,6 +5,9 @@
 
 TARGET_DEVICE_PATH := device/xiaomi/mi89xx-mainline/montana
 
+# TODO: Remove this when we're booting!
+WITH_ADB_INSECURE := true
+
 # Inherit options from mainline/qcom-common
 TARGET_HAS_IR := true
 TARGET_QCOM_SOC_FAMILY := msm8937

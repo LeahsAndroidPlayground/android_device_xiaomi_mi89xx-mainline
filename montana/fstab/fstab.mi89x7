@@ -13,7 +13,7 @@
 /dev/block/bootdevice/by-name/modem /vendor/firmware_mnt ext4 ro,nosuid,nodev,barrier=0,context=u:object_r:firmware_file:s0 wait
 
 # Metadata
-/dev/block/by-name/oem /metadata ext4 nodev,noatime,nosuid,discard,data=journal,commit=1 check,formattable,first_stage_mount,metadata_csum
+/dev/block/bootdevice/by-name/oem /metadata ext4 nodev,noatime,nosuid,discard,data=journal,commit=1 check,formattable,first_stage_mount,metadata_csum
 
 # Misc
 /dev/block/bootdevice/by-name/misc /misc emmc defaults defaults
@@ -28,7 +28,7 @@
 #/devices/platform/soc@0/7864900.mmc/mmc_host/mmc* auto auto defaults voldmanaged=sdcard:auto,encryptable=userdata,noemulatedsd
 
 # System
-/dev/block/platform/soc/7824900.sdhci/by-name/system /system ext4 ro,barrier=1,discard wait,first_stage_mount
+/dev/block/bootdevice/by-name/system /system ext4 ro,barrier=1,discard wait,first_stage_mount
 
 # USB
 #/devices/platform/soc@0/78db000.usb/*/usb* auto auto defaults voldmanaged=usb:auto,noemulatedsd
