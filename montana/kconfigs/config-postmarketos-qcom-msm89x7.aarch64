@@ -7102,7 +7102,7 @@ CONFIG_NLS_ISO8859_1=y
 # CONFIG_NLS_UTF8 is not set
 CONFIG_NLS_UCS2_UTILS=m
 # CONFIG_DLM is not set
-# CONFIG_UNICODE is not set
+CONFIG_UNICODE=y
 CONFIG_IO_WQ=y
 # end of File systems
 

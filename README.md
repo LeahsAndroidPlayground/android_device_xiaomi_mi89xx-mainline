@@ -2,11 +2,12 @@
 
 ## Kernel repositories
 
-|                 Target                 |               Path               |                    URL                    |         Branch         |
-|----------------------------------------|----------------------------------|-------------------------------------------|------------------------|
-| mi8916                                 | kernel/mainline/msm8916-mainline | https://github.com/msm8916-mainline/linux | wip/msm8916/6.19       |
-| mi8953_a                               | kernel/mainline/msm8953-mainline | https://github.com/msm8953-mainline/linux | barni2000/6.19/develop |
-| mi439_mainline, mi89x7, tiare_mainline | kernel/mainline/msm89x7-mainline | https://github.com/msm89x7-mainline/linux | msm89x7/6.19-develop   |
+|                   Target                  |               Path               |                    URL                    |         Branch         |
+|-------------------------------------------|----------------------------------|-------------------------------------------|------------------------|
+| mi8916                                    | kernel/mainline/msm8916-mainline | https://github.com/msm8916-mainline/linux | wip/msm8916/6.19       |
+| mi8953_a, daisy_mainline, tissot_mainline | kernel/mainline/msm8953-mainline | https://github.com/msm8953-mainline/linux | barni2000/6.19/develop |
+| mi8998                                    | kernel/mainline/msm8998-mainline | https://github.com/msm8998-mainline/linux | qcom-msm8998-6.1.y     |
+| mi439_mainline, mi89x7, tiare_mainline    | kernel/mainline/msm89x7-mainline | https://github.com/msm89x7-mainline/linux | msm89x7/6.19-develop   |
 
 ## Kernel edits
 
@@ -14,11 +15,21 @@
 
 ## Kernel patches
 
+For recent Linux kernel versions:
+
 | Commit name | Purpose | Source |
 |-------------|---------|--------|
 | `ANDROID: usb: gadget: configfs: Add Uevent to notify userspace` | Fixes USB in normal mode | https://android.googlesource.com/kernel/common-patches/+/refs/heads/main-kernel/android-mainline/ANDROID-usb-gadget-configfs-Add-Uevent-to-notify-userspace.patch |
 | `ANDROID: mm/memfd-ashmem-shim: Introduce shim layer` | Fixes media codec | https://android.googlesource.com/kernel/common-patches/+/refs/heads/main-kernel/android-mainline/ANDROID-mm-memfd-ashmem-shim-Introduce-shim-layer.patch |
 | `ANDROID: mm: shmem: Use memfd-ashmem-shim ioctl handler"` | Fixes media codec | https://android.googlesource.com/kernel/common-patches/+/refs/heads/main-kernel/android-mainline/ANDROID-mm-shmem-Use-memfd-ashmem-shim-ioctl-handler.patch |
+
+For Linux kernel v6.1:
+
+| Commit name | Purpose | Source |
+|-------------|---------|--------|
+| `ANDROID: extract-cert: omit PKCS#11 support if building against BoringSSL` | Fixes building | https://android.googlesource.com/kernel/common-patches/+/2721513428563d22dacf390aec5e81547de2ce26/android-mainline/REVISIT-ANDROID-extract-cert-omit-PKCS-11-support-if-building-against-BoringSSL.patch |
+| `Revert "staging: remove ashmem"` | Fixes booting | https://android.googlesource.com/kernel/common-patches/+/2721513428563d22dacf390aec5e81547de2ce26/android-mainline/Revert-staging-remove-ashmem.patch |
+| `ANDROID: usb: gadget: configfs: Add Uevent to notify userspace` | Fixes USB in normal mode | https://android.googlesource.com/kernel/common-patches/+/2721513428563d22dacf390aec5e81547de2ce26/android-mainline/NOUPSTREAM-ANDROID-usb-gadget-configfs-Add-Uevent-to-notify-userspace.patch |
 
 ## Notes for `mi439_mainline` target
 - If you're flashing the device starting from stock OS, please firstly flash vbmeta image from any working custom ROM (Example: [Official LineageOS builds](https://download.lineageos.org/devices/Mi439/builds)). We do not enable AVB support here for smaller image sizes, for now.
@@ -37,3 +48,7 @@
 - The target is 32-bit, which requires the following changes to be made in AOSP tree in order to boot:
   1. On `packages/modules/Connectivity/bpf/loader/NetBpfLoad.cpp`, locate to the next line of the line containing `[Arm] 64-bit userspace required on 6.2+ kernels (%d).` (which should be `return 1;`), remove the line.
   2. On `system/netd/server/XfrmController.cpp`, in function `validateResponse`, replace the `return` statement containing `Error netlink message` with `return netdutils::status::ok;`.
+
+## Notes for `mi8998` target
+
+- Display and Graphics does not work properly for now. Use `scrcpy` tool to interact.

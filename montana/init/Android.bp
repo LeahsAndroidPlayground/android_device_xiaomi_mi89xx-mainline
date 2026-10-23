@@ -4,21 +4,21 @@
 //
 
 prebuilt_etc {
-    name: "init.mi89x7.rc",
+    name: "init.montana.rc",
     src: "init.mi89x7.rc",
     sub_dir: "init/hw",
     vendor: true,
 }
 
 prebuilt_etc {
-    name: "init.recovery.mi89x7.rc",
+    name: "init.recovery.montana.rc",
     src: "init.recovery.mi89x7.rc",
     sub_dir: "init",
     recovery: true,
 }
 
 prebuilt_etc {
-    name: "ueventd.mi89x7.rc",
+    name: "ueventd.montana.rc",
     src: "ueventd.mi89x7.rc",
     vendor: true,
 }

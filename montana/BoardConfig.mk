@@ -11,7 +11,11 @@ AB_OTA_UPDATER := false
 
 # Boot parameters
 BOARD_KERNEL_CMDLINE += \
-    androidboot.hardware=mi89x7
+    androidboot.hardware=montana \
+    androidboot.boot_devices=any \
+    androidboot.selinux=permissive \
+    audit=0 \
+    panic=-1
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/mainline/msm89x7-mainline
@@ -44,6 +48,9 @@ RECOVERY_KERNEL_MODULES := \
 
 TARGET_AUTO_COLLECT_KERNEL_MODULE_DEPS := true
 
+# Display
+TARGET_SCREEN_DENSITY := 480
+
 # OTA
 TARGET_OTA_ASSERT_DEVICE := montana
 
@@ -51,7 +58,7 @@ TARGET_OTA_ASSERT_DEVICE := montana
 BOARD_BOOTIMAGE_PARTITION_SIZE              := 16777216
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE           := ext4
 BOARD_CACHEIMAGE_PARTITION_SIZE             := 268435456
-BOARD_RECOVERYIMAGE_PARTITION_SIZE          := 30616566 # Fake size! Real on-device partition is 16879616.
+BOARD_RECOVERYIMAGE_PARTITION_SIZE          := 31000000 # Fake size! Real on-device partition is 16879616.
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE          := ext4
 BOARD_SYSTEMIMAGE_EXTFS_INODE_COUNT         := -1
 BOARD_SYSTEMIMAGE_PARTITION_SIZE            := 2516582400
@@ -60,4 +67,4 @@ BOARD_USES_METADATA_PARTITION := true
 
 # Recovery
 TARGET_RECOVERY_DENSITY := xxhdpi
-TARGET_RECOVERY_FSTAB := $(TARGET_DEVICE_PATH)/fstab/fstab.mi89x7
+TARGET_RECOVERY_FSTAB := $(TARGET_DEVICE_PATH)/fstab/fstab.montana

@@ -1,0 +1,43 @@
+#
+# SPDX-FileCopyrightText: The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# Boot
+/dev/block/by-name/boot /boot emmc defaults defaults
+
+# Cache
+/dev/block/by-name/cache /cache ext4 rw,noatime,nosuid,nodev,barrier=1,data=ordered wait,check,formattable
+
+# Firmware
+/dev/block/by-name/modem /vendor/firmware_mnt ext4 ro,nosuid,nodev,barrier=0,context=u:object_r:firmware_file:s0 wait
+
+# Metadata
+/dev/block/by-name/oem /metadata ext4 nodev,noatime,nosuid,discard,data=journal,commit=1 check,formattable,first_stage_mount,metadata_csum
+
+# Misc
+/dev/block/by-name/misc /misc emmc defaults defaults
+
+# Persist
+/dev/block/by-name/persist /mnt/vendor/persist ext4 nosuid,nodev,barrier=1,noatime,noauto_da_alloc wait
+
+# Recovery
+/dev/block/by-name/recovery /recovery emmc defaults defaults
+
+# SDcard
+#/devices/platform/soc@0/7864900.mmc/mmc_host/mmc* auto auto defaults voldmanaged=sdcard:auto,encryptable=userdata,noemulatedsd
+
+# System
+/dev/block/by-name/system /system ext4 ro,barrier=1,discard wait,first_stage_mount
+
+# USB
+#/devices/platform/soc@0/78db000.usb/*/usb* auto auto defaults voldmanaged=usb:auto,noemulatedsd
+
+# Userdata
+#/dev/block/by-name/userdata /data f2fs rw,discard,nosuid,nodev,noatime,nodiratime,nobarrier,inline_xattr,inline_data wait,check,latemount,formattable,fileencryption=ice,quota,reservedsize=128M
+#/dev/block/by-name/userdata /data f2fs rw,noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier,inlinecrypt    latemount,wait,check,quota,formattable,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,metadata_encryption=aes-256-xts,keydirectory=/metadata/vold/metadata_encryption,fscompress,readahead_size_kb=128
+/dev/block/by-name/userdata /data ext4 nodev,noatime,nosuid,discard latemount,check,quota,formattable
+/dev/block/by-name/userdata /data f2fs nodev,noatime,nosuid,discard,reserve_root=32768 latemount,check,quota,formattable
+
+# ZRAM
+/dev/block/zram0 none swap defaults zramsize=50%

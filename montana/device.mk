@@ -39,11 +39,11 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Init
 PRODUCT_PACKAGES += \
-    fstab.mi89x7 \
-    fstab.mi89x7.ramdisk \
-    init.mi89x7.rc \
-    init.recovery.mi89x7.rc \
-    ueventd.mi89x7.rc
+    fstab.montana \
+    fstab.montana.ramdisk \
+    init.montana.rc \
+    init.recovery.montana.rc \
+    ueventd.montana.rc
 
 PRODUCT_PACKAGES += \
     use_memfd.rc

@@ -4,8 +4,8 @@
 //
 
 prebuilt_etc {
-    name: "fstab.mi89x7",
-    src: "fstab.mi89x7",
+    name: "fstab.montana",
+    src: "fstab.montana",
     vendor: true,
     ramdisk_available: true,
 }

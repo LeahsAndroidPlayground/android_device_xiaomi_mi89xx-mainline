@@ -50,8 +50,12 @@ const std::unordered_map<std::string, device_info_t> kDeviceInfoMap = {
     {"oxygen", {342}},
     {"uter", {400}},
     {"sakura", {420}},
+    {"tissot", {400}},
     {"vince", {440}},
     {"ysl", {280}},
+
+    // Xiaomi MSM8998
+    {"sagit", {428}},
 
         // clang-format on
 };
@@ -124,7 +128,7 @@ int main() {
 #ifdef DIVIDE_LCD_DENSITY_BY_TWO
     tmp_lcd_density /= 2;
 #endif
-    ret &= SetProperty(kPropPrefix + "lcd_density", std::to_string(tmp_lcd_density));
+    SetProperty(kPropPrefix + "lcd_density", std::to_string(tmp_lcd_density));
 
     return ret == true ? EXIT_SUCCESS : EXIT_FAILURE;
 }
